@@ -11,6 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
- *=require devise_bootstrap_views
+ *= require devise_bootstrap_views
  *= require_self
  */

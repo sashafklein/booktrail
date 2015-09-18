@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %meta{content: "", name: "description"}
+    %meta{content: "", name: "author"}
+    %title BookTrail
+
+    = javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+
+    = stylesheet_link_tag    'landing', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  
+  %body
+    .landing-page{ style: 'background-image: bookwall.jpg' }
+      .landing-cover
+        .text-area
+          %h1.centered-header BookTrail
+          %h2.centered-subtitle Leave no book behind
+          %ul
+            %li.button-link= link_to 'Sign In', new_user_session_path, class: 'btn-primary'
+            %li.button-link= link_to 'Sign Up', new_user_registration_path, class: 'btn-primary'
