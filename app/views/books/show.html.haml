@@ -1,0 +1,30 @@
+.page-header
+  = link_to books_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_book_path(@book), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %div{ style: 'display: inline-block' }
+    %h1{ style: 'display: inline-block' }= "#{@book.name}   "
+    %h4{ style: 'display: inline-block' }
+      by
+      %em= @book.author
+
+  %h4= "#{ @book.started.strftime('%B %d, %Y') } - #{ @book.ended.strftime('%B %d, %Y') }"
+
+  %br 
+
+  %h4= "Rated #{@book.rating} / 10"
+
+%br
+
+%h4 Summary:
+.container
+  %p= @book.summary
+
+%br
+
+%h4 Thoughts:
+.container
+  %p= md( @book.thoughts )

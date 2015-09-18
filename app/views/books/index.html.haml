@@ -1,0 +1,35 @@
+.page-header
+  = link_to new_book_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Book
+  %h1= "#{@user.name}'s Book Trail"
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Author
+        %th Started
+        %th Ended
+        %th Rating
+        %th Summary
+        %th Thoughts
+        - if @books.count > 0
+          %th
+          %th
+          %th
+
+    %tbody
+      - @books.each do |book|
+        %tr
+          %td= book.name
+          %td= book.author
+          %td= book.started.strftime('%b %d, %Y')
+          %td= book.ended.strftime('%b %d, %Y')
+          %td= book.rating
+          %td= book.summary.truncate(100)
+          %td= book.thoughts.truncate(100)
+          %td= link_to 'Show', book
+          %td= link_to 'Edit', edit_book_path(book)
+          %td= link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete

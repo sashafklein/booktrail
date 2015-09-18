@@ -1,0 +1,43 @@
+= form_for @book, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @book.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+
+      %ul
+        - @book.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :author, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :author, class: 'form-control'
+  .form-group
+    = f.label :started, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.date_select :started, class: 'form-control'
+  .form-group
+    = f.label :ended, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.date_select :ended, class: 'form-control'
+  .form-group
+    = f.label :rating, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select :rating, options_for_select( (0..10).to_a ), class: 'form-control'
+  .form-group
+    = f.label :summary, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_area :summary, class: 'form-control'
+  .form-group
+    = f.label :thoughts, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_area :thoughts, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

@@ -15,6 +15,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-generators'
 gem 'haml-rails'
 gem 'devise'
+gem 'figaro'
+gem 'devise-bootstrap-views'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'
