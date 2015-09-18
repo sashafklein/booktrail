@@ -1,0 +1,86 @@
+$blue: #4479BA
+$green: rgba(82, 222, 82, 0.8)
+
+$bgDefault      : #4479ba
+$bgHighlight    : #285894
+$colDefault     : #feffff
+$colHighlight   : #e7e3e3
+$dropDown       : false
+.panel
+  margin-top: 100px
+
+.page-header
+  border-bottom: none
+thead
+  background-color: $green
+  th
+    padding: 10px
+    text-align: center
+
+tbody
+  tr.odd
+    background-color: lighten( $green, 20 )
+    &:hover
+      background-color: lighten( $green, 15 )
+  tr.even
+    background-color: lighten( $green, 30 )
+    &:hover
+      background-color: lighten( $green, 25 )
+
+.navbar
+  background-color: $bgDefault
+  border-color: $bgHighlight
+  .navbar-brand 
+    color: $colDefault
+    &:hover, &:focus 
+      color: $colHighlight
+  .navbar-text 
+    color: $colDefault
+  .navbar-nav 
+    > li 
+      > a 
+        color: $colDefault
+        &:hover, &:focus 
+          color: $colHighlight
+      @if $dropDown
+        > .dropdown-menu
+          background-color: $bgDefault
+          > li > a
+            color: $colDefault
+            &:hover, &:focus
+              color: $colHighlight
+              background-color: $bgHighlight
+          .divider
+            background-color: $bgHighlight
+    > .active 
+      > a, > a:hover, > a:focus 
+        color: $colHighlight
+        background-color: $bgHighlight 
+    > .open 
+      > a, > a:hover, > a:focus 
+        color: $colHighlight
+        background-color: $bgHighlight 
+  .navbar-toggle 
+    border-color: $bgHighlight
+    &:hover, &:focus 
+      background-color: $bgHighlight 
+    .icon-bar 
+      background-color: $colDefault
+  .navbar-collapse,
+  .navbar-form 
+    border-color: $colDefault 
+  .navbar-link 
+    color: $colDefault
+    &:hover 
+      color: $colHighlight 
+@media (max-width: 767px) 
+  .navbar-default .navbar-nav .open .dropdown-menu 
+    > li > a 
+      color: $colDefault
+      &:hover, &:focus 
+        color: $colHighlight
+    > .active 
+      > a, > a:hover, > a:focus 
+        color: $colHighlight
+        background-color: $bgHighlight
+  

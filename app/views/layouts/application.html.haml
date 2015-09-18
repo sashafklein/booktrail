@@ -13,6 +13,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   %body
     %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
       .container
@@ -22,11 +23,9 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "BookTrail", "#", class: "navbar-brand"
+          = link_to "BookTrail", root_path, class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{href: "#"} Home
             - if current_user
               %li= link_to 'Books', user_books_path(current_user)
           %ul.nav.navbar-nav.pull-right
