@@ -1,35 +1,31 @@
-.page-header
-  = link_to new_book_path, class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    New Book
-  %h1= "#{@user.name}'s Book Trail"
-
 .table-responsive
-  %table.table.table-bordered.table-hover
+  %table.table
     %thead
       %tr
         %th Name
-        %th Author
-        %th Started
-        %th Ended
-        %th Rating
+        %th Read
+        %th Stars
         %th Summary
         %th Thoughts
         - if @books.count > 0
-          %th
           %th
           %th
 
     %tbody
       - @books.each_with_index do |book, index|
         %tr{ class: (index.odd? ? 'odd' : 'even') }
-          %td= book.name
-          %td= book.author
-          %td= book.started.strftime('%b %d, %Y')
-          %td= book.ended.strftime('%b %d, %Y')
-          %td= book.rating
-          %td= book.summary.length > 0 ? 'Yes' : ''
-          %td= book.thoughts.length > 0 ? 'Yes' : ''
-          %td= link_to 'Show', book
-          %td= link_to 'Edit', edit_book_path(book)
-          %td= link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+          %td= link_to book.full_name.html_safe, book
+          %td= book.range.html_safe
+          %td= stars( book )
+          %td= book.summary.to_s.truncate(15)
+          %td= book.thoughts.to_s.truncate(15)
+          %td
+            = link_to edit_book_path(book) do
+              .glyphicon.glyphicon-check
+          %td
+            = link_to book, data: { confirm: 'Are you sure?' }, method: :delete do
+              .glyphicon.glyphicon-trash
+  .container{ style: 'text-align: center' }
+    = link_to new_book_path, class: 'btn btn-primary' do
+      %span.glyphicon.glyphicon-plus
+      Add Book

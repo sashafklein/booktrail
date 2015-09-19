@@ -1,7 +1,18 @@
-.page-header
-  = link_to books_path, class: 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  %h1 New book record
+= form_for @book, html: { class: "form-horizontal new", role: "form" } do |f|
+  -if @book.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
 
-= render 'form'
+      %ul
+        - @book.errors.full_messages.each do |msg|
+          %li= msg
+  .form-contents
+    .form-group
+      = f.text_field :name, class: 'form-control', placeholder: 'Name'
+    .form-group
+      = f.text_field :author, class: 'form-control', placeholder: 'Author'
+    .form-group{ style: 'text-align: center' }
+      = f.submit "Save Book", class: 'btn btn-primary'

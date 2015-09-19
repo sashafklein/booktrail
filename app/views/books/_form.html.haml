@@ -9,35 +9,18 @@
       %ul
         - @book.errors.full_messages.each do |msg|
           %li= msg
-
-  .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :name, class: 'form-control'
-  .form-group
-    = f.label :author, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :author, class: 'form-control'
-  .form-group
-    = f.label :started, class: 'col-sm-2 control-label'
-    .col-sm-10
+  .form-contents
+    .form-group
+      = f.text_field :name, class: 'form-control', placeholder: 'Name'
+    .form-group
+      = f.text_field :author, class: 'form-control', placeholder: 'Author'
+    .form-group
       = f.date_select :started, class: 'form-control'
-  .form-group
-    = f.label :ended, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.date_select :ended, class: 'form-control'
-  .form-group
-    = f.label :rating, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.select :rating, options_for_select( (0..10).to_a ), class: 'form-control'
-  .form-group
-    = f.label :summary, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_area :summary, class: 'form-control'
-  .form-group
-    = f.label :thoughts, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_area :thoughts, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+    .form-group
+      = f.select :rating, options_for_select( (0..5).to_a ), class: 'form-control'
+    .form-group
+      = f.text_area :summary, class: 'form-control', placeholder: 'Summary'
+    .form-group
+      = f.text_area :thoughts, class: 'form-control thoughts', placeholder: 'Thoughts (accepts Markdown)'
+    .form-group
+      = f.submit "Save Book", class: 'btn btn-primary'

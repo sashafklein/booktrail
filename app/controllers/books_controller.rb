@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :load_user, only: :index
+  before_action :load_user, only: [:index, :create, :new]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -19,9 +19,10 @@ class BooksController < ApplicationController
 
   def create
     @book = @user.books.new(book_params)
-
+    @book.started = Time.now
+    
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to @book
     else
       render :new
     end
@@ -29,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to @book
     else
       render :edit
     end
@@ -37,13 +38,13 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    redirect_to books_url
   end
 
   private
 
   def load_user
-    @user = User.find( params[:user_id] )
+    @user = User.find_by( id: params[:user_id] ) || current_user
   end
 
   def set_book
@@ -51,7 +52,7 @@ class BooksController < ApplicationController
     if @book.user == current_user
       @user = current_user
     else
-      redirect_to root_path, error: "That's not your book!"
+      redirect_to root_path
     end
   end
 
