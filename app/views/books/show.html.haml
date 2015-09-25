@@ -1,7 +1,7 @@
 .container.book-show
 
   .links
-    = link_to books_path, class: 'btn btn-default' do
+    = link_to user_books_path(current_user), class: 'btn btn-default' do
       %span.glyphicon.glyphicon-list-alt
       Back
     = link_to edit_book_path(@book), class: 'btn btn-primary' do
